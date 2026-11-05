@@ -1,0 +1,76 @@
+/* Estilos exclusivos de la escena 03: no modifican el HERO. */
+.rally-scene{--rally-bg:#080e0f;--rally-lime:#d5f754;display:block;position:relative;height:400svh;background:var(--rally-bg);color:#f7f7f2;font-family:Arial,Helvetica,sans-serif}
+.rally-scene *{box-sizing:border-box}
+.rally-scene__stage{position:sticky;top:0;height:100svh;overflow:hidden;isolation:isolate}
+/* Máscaras en los bordes reales del fotograma, igual que en el saque. */
+.rally-scene__visual{position:absolute;left:50%;top:50%;width:min(100%,177.777778svh);aspect-ratio:16/9;transform:translate(-50%,-50%);z-index:-3;-webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent),linear-gradient(0deg,transparent,#000 3%,#000 97%,transparent);mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent),linear-gradient(0deg,transparent,#000 3%,#000 97%,transparent);-webkit-mask-composite:source-in;mask-composite:intersect;pointer-events:none}
+.rally-scene__poster,.rally-scene__canvas{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:contain}
+.rally-scene__canvas{opacity:0}.rally-scene[data-drawn] .rally-scene__canvas{opacity:1}.rally-scene[data-drawn] .rally-scene__poster{visibility:hidden}
+.rally-scene__shade{position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(270deg,rgba(8,14,15,.36),transparent 56%),linear-gradient(0deg,rgba(8,14,15,.85),transparent 15%,transparent 90%,rgba(8,14,15,.25))}
+.rally-scene__copy{position:absolute;left:55%;right:5%;top:50%;opacity:var(--rally-reveal,0);visibility:hidden;transform:translateY(calc(-50% + var(--rally-offset,26px)));will-change:opacity,transform}
+.rally-scene__copy.is-visible{visibility:visible}
+.rally-scene__chapter{display:flex;align-items:center;gap:10px;margin:0 0 clamp(22px,3.4svh,40px);font-size:11px;letter-spacing:1.8px;line-height:1.5;color:#d7dbd6}
+.rally-scene__chapter>span{width:28px;height:1px;background:var(--rally-lime)}.rally-scene__chapter b{font-weight:500;color:var(--rally-lime)}
+.rally-scene h2{font-family:Impact,'Arial Narrow','Helvetica Neue',sans-serif;font-weight:900;font-stretch:condensed;text-transform:uppercase;font-size:clamp(42px,6.2vw,108px);line-height:.98;letter-spacing:-1.7px;margin:0}
+.rally-scene__description{font-size:clamp(14px,1.25vw,20px);line-height:1.6;color:#c9cfcb;margin:26px 0 0}
+
+
+.rally-scene__footer{position:absolute;left:5%;right:5%;bottom:max(30px,calc(env(safe-area-inset-bottom,0px) + 16px));display:flex;justify-content:space-between;align-items:center;gap:16px;font-size:9px;letter-spacing:1.2px;color:#adb8b2;line-height:1.5}
+.rally-scene__footer p{margin:0;letter-spacing:.3px;text-align:right}.rally-scene__footer p span{color:var(--rally-lime);margin-left:10px}
+.rally-scene__track{position:absolute;left:0;right:0;bottom:-13px;height:1px;background:#ffffff24}.rally-scene__track>span{display:block;width:100%;height:100%;background:var(--rally-lime);transform:scaleX(var(--rally-progress,0));transform-origin:left}
+.rally-scene__status{position:absolute;left:5%;right:5%;bottom:80px;padding:10px 12px;max-width:480px;margin:0;background:#080e0fe8;color:#d7dbd6;font-size:12px;line-height:1.5}.rally-scene__status:empty{display:none}
+.rally-scene__debug[hidden]{display:none}.rally-scene__debug{position:absolute;z-index:5;left:20px;top:max(20px,env(safe-area-inset-top,0px));width:min(280px,calc(100% - 40px));padding:16px;border:1px solid #d5f75466;border-radius:12px;background:#0b1215ed;font-size:12px;color:#f7f7f2}
+.rally-scene__debug label{display:block;margin:14px 0}.rally-scene__debug output{float:right}.rally-scene__debug input[type=range]{display:block;width:100%;min-height:36px;accent-color:var(--rally-lime)}.rally-scene__debug input[type=number]{width:68px;min-height:36px;margin-left:12px;padding:5px;font:inherit}.rally-scene__debug small{line-height:1.5;color:#c9cfcb}.rally-scene__debug input:focus-visible{outline:2px solid var(--rally-lime);outline-offset:4px}
+@media(min-width:701px) and (max-width:1100px) and (orientation:landscape){.rally-scene h2{font-size:clamp(38px,6vw,66px)}.rally-scene__chapter{margin-bottom:22px}.rally-scene__description{font-size:15px;margin-top:20px}}
+/* Tablet vertical: conserva el encuadre completo encima del mensaje. */
+@media(orientation:portrait){
+ .rally-scene{height:360svh}
+ .rally-scene__visual{width:100%;top:10%;transform:translateX(-50%)}
+ .rally-scene__shade{background:linear-gradient(0deg,var(--rally-bg) 5%,transparent 50%)}
+ .rally-scene__copy{left:7%;right:7%;top:calc(10svh + 56.25vw + 24px);transform:translateY(var(--rally-offset,26px))}
+ .rally-scene h2{font-size:clamp(36px,7.8vw,68px);letter-spacing:-1px}
+ .rally-scene__chapter{font-size:10px;margin-bottom:18px}
+ .rally-scene__description{font-size:clamp(14px,2vw,18px);margin-top:18px}
+ 
+}
+/* Móvil vertical: amplía la jugadora recortando solo el espacio vacío derecho. */
+@media(max-width:700px) and (orientation:portrait){
+ .rally-scene__visual{left:0;right:auto;top:8%;width:min(180vw,85.333333svh);transform:none}
+ .rally-scene__copy{top:calc(8svh + min(101.25vw,48svh) + 18px)}
+ .rally-scene h2{font-size:clamp(32px,9vw,54px)}
+ .rally-scene__chapter{font-size:9px;letter-spacing:1.2px;margin-bottom:12px;gap:7px}
+ .rally-scene__description{font-size:14px;margin-top:16px;line-height:1.5}
+ 
+ .rally-scene__footer{font-size:8px;letter-spacing:.5px}.rally-scene__footer p{max-width:52%}
+ .rally-scene__debug{font-size:11px;padding:12px}
+}
+@media(max-width:700px) and (orientation:portrait) and (max-height:740px){
+ .rally-scene__visual{width:min(170vw,71.111111svh)}
+ .rally-scene__copy{top:calc(8svh + min(95.625vw,40svh) + 14px)}
+ .rally-scene h2{font-size:clamp(29px,8vw,46px)}
+ .rally-scene__chapter{margin-bottom:9px}.rally-scene__description{margin-top:12px}
+}
+/* Móvil horizontal: se activa por altura y orientación, no por modelo de teléfono. */
+@media(max-height:540px) and (orientation:landscape){
+ .rally-scene{height:460svh}
+ .rally-scene__copy{left:54%;right:4%;top:48%}
+ .rally-scene h2{font-size:clamp(27px,4.8vw,48px);letter-spacing:-.7px}
+ .rally-scene__chapter{font-size:8px;letter-spacing:1px;margin-bottom:12px}
+ .rally-scene__description{font-size:12px;line-height:1.4;margin-top:12px}
+ 
+ .rally-scene__footer{bottom:max(18px,env(safe-area-inset-bottom,0px));font-size:8px}
+ .rally-scene__track{bottom:-8px}
+ .rally-scene__debug{font-size:10px;padding:10px;top:10px}.rally-scene__debug label{margin:6px 0}
+}
+@media(prefers-reduced-motion:reduce){.rally-scene{height:100svh}.rally-scene__copy{opacity:1;visibility:visible;--rally-offset:0px}.rally-scene__footer{display:none}}
+
+/* Bloques de valor del wireframe, como HTML real. */
+.rally-scene__benefits{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(18px,2.4vw,40px);margin:clamp(28px,5svh,56px) 0 0;padding:0}
+.rally-scene__benefits>div{display:flex;align-items:center;gap:16px;min-width:0}
+.rally-scene__benefits dt{font-family:Impact,'Arial Narrow',sans-serif;font-size:clamp(38px,3.8vw,60px);line-height:1;color:var(--rally-lime);font-weight:400}
+.rally-scene__benefits dd{margin:0;padding-left:16px;border-left:1px solid #c9cfcb55;font-size:clamp(11px,.9vw,14px);line-height:1.6;color:#c9cfcb}
+@media(min-width:701px) and (max-width:1100px) and (orientation:landscape){.rally-scene__copy{left:53%;right:4%}.rally-scene__benefits{gap:16px;margin-top:26px}.rally-scene__benefits>div{gap:10px}.rally-scene__benefits dd{padding-left:10px;font-size:11px}}
+@media(orientation:portrait){.rally-scene__benefits{margin-top:24px;max-width:500px}.rally-scene__benefits dt{font-size:44px}.rally-scene__benefits dd{font-size:13px}}
+@media(max-width:700px) and (orientation:portrait){.rally-scene h2{font-size:clamp(29px,7.8vw,50px)}.rally-scene__benefits{margin-top:20px;gap:14px}.rally-scene__benefits>div{gap:10px}.rally-scene__benefits dt{font-size:38px}.rally-scene__benefits dd{padding-left:10px;font-size:11px}}
+@media(max-width:700px) and (orientation:portrait) and (max-height:740px){.rally-scene h2{font-size:clamp(27px,7.4vw,44px)}.rally-scene__benefits{margin-top:16px}.rally-scene__benefits dt{font-size:32px}.rally-scene__benefits dd{font-size:10px}}
+@media(max-height:540px) and (orientation:landscape){.rally-scene h2{font-size:clamp(25px,4.3vw,43px)}.rally-scene__benefits{margin-top:16px;gap:14px}.rally-scene__benefits>div{gap:8px}.rally-scene__benefits dt{font-size:32px}.rally-scene__benefits dd{padding-left:8px;font-size:10px}}
