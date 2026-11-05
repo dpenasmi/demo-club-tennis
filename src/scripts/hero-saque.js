@@ -22,7 +22,7 @@ if (root) {
   const loading = new Set();
   const failed = new Set();
   const clamp = (n, min, max) => Math.max(min, Math.min(max, n));
-  const url = (n) => `${config.frameDirectory}ezgif-frame-${String(n).padStart(3, '0')}.webp`;
+  const url = (n) => `${config.frameDirectory}ezgif-frame-${String(n).padStart(3, '0')}.jpg`;
 
   function reveal(frame) {
     const amount = reduced.matches ? 1 : clamp((frame - impactFrame + 1) / config.revealFrames, 0, 1);
@@ -80,7 +80,7 @@ if (root) {
       };
       img.onerror = () => {
         failed.add(n);
-        status.textContent = `No se pudo cargar el fotograma ${n}. Comprueba IMG/ESCENA-1-WebP y los nombres ezgif-frame-001.webp a ezgif-frame-094.webp.`;
+        status.textContent = `No se pudo cargar el fotograma ${n}. Comprueba IMG/ESCENA-1-WebP y los nombres ezgif-frame-001.jpg a ezgif-frame-094.jpg.`;
         finish();
       };
       img.src = url(n);
