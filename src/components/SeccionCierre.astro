@@ -1,0 +1,57 @@
+---
+import '../styles/seccion-cierre.css';
+interface Props {
+  revealFrame?: number;
+  ctaHref?: string;
+}
+// 106 es provisional: localiza el final del punto mediante ?debug=1.
+const { revealFrame = 106, ctaHref } = Astro.props;
+const config = {
+  frameCount: 126,
+  revealFrame,
+  revealFrames: 8,
+  sequenceEnd: 0.82,
+  frameDirectory: `${import.meta.env.BASE_URL}ESCENA-4-WebP/`,
+};
+---
+<tennis-point class="closing-scene" id="cierre" data-config={JSON.stringify(config)}>
+  <section class="closing-scene__stage" aria-labelledby="cierre-title">
+    <div class="closing-scene__visual">
+      <img class="closing-scene__poster" src={`${config.frameDirectory}ezgif-frame-001.jpg`} alt="Vista aérea de una pista de tenis con una jugadora y un jugador durante el intercambio." width="1920" height="1080" loading="lazy" decoding="async" />
+      <canvas class="closing-scene__canvas" aria-hidden="true"></canvas>
+    </div>
+    <div class="closing-scene__shade" aria-hidden="true"></div>
+    <div class="closing-scene__copy">
+      <p class="closing-scene__chapter"><span aria-hidden="true"></span><b>04</b> / TU PRÓXIMO PUNTO</p>
+      <h2 id="cierre-title">Tu próximo<br />punto empieza aquí.</h2>
+      {ctaHref ? (
+        <a class="closing-scene__cta" href={ctaHref}>Entra en pista <span aria-hidden="true">↗</span></a>
+      ) : (
+        <button class="closing-scene__cta" type="button" data-open-point aria-haspopup="dialog" aria-controls="cierre-dialog">Entra en pista <span aria-hidden="true">↗</span></button>
+      )}
+    </div>
+    <footer class="closing-scene__footer">
+      <span>04 / EL SIGUIENTE PUNTO</span>
+      <p>Tu juego continúa <span aria-hidden="true">↗</span></p>
+      <div class="closing-scene__track" aria-hidden="true"><span></span></div>
+    </footer>
+    <p class="closing-scene__status" role="status" aria-live="polite"></p>
+    <aside class="closing-scene__debug" hidden aria-label="Ajuste de la cuarta escena">
+      <strong>ESCENA 04 · FINAL DEL PUNTO</strong>
+      <label>Fotograma <output class="closing-frame">1 / 126</output>
+        <input class="closing-scrub" type="range" min="1" max="126" value="1" />
+      </label>
+      <label>Mostrar texto desde <input class="closing-reveal" type="number" min="1" max="126" value={revealFrame} /></label>
+      <small>106 es provisional. Busca el final del punto y guarda el número en revealFrame.</small>
+    </aside>
+    {!ctaHref && (
+      <dialog class="closing-scene__dialog" id="cierre-dialog" aria-labelledby="cierre-dialog-title">
+        <h3 id="cierre-dialog-title">Empieza a tu ritmo.</h3>
+        <p>Técnica, confianza y ganas de jugar. Tu próximo punto empieza en la pista.</p>
+        <form method="dialog"><button class="closing-scene__cta" type="submit">Volver a la pista <span aria-hidden="true">↗</span></button></form>
+      </dialog>
+    )}
+    <noscript><style>.closing-scene{height:auto;min-height:100svh}.closing-scene__copy{opacity:1!important;visibility:visible!important;transform:none!important}.closing-scene__footer{display:none}.closing-scene__copy .closing-scene__cta{pointer-events:auto!important}.closing-scene [data-open-point]{display:none}</style></noscript>
+  </section>
+</tennis-point>
+<script src="../scripts/seccion-cierre.js"></script>

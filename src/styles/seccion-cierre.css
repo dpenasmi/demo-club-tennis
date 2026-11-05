@@ -1,0 +1,80 @@
+/* Estilos exclusivos de la escena 04: no modifican el HERO. */
+.closing-scene{--closing-bg:#080e0f;--closing-lime:#d5f754;display:block;position:relative;height:480svh;background:var(--closing-bg);color:#f7f7f2;font-family:Arial,Helvetica,sans-serif}
+.closing-scene *{box-sizing:border-box}
+.closing-scene__stage{position:sticky;top:0;height:100svh;overflow:hidden;isolation:isolate}
+/* Máscaras en los bordes reales del fotograma, igual que en el saque. */
+.closing-scene__visual{position:absolute;left:50%;top:50%;width:min(100%,177.777778svh);aspect-ratio:16/9;transform:translate(-50%,-50%);z-index:-3;-webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent),linear-gradient(0deg,transparent,#000 3%,#000 97%,transparent);mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent),linear-gradient(0deg,transparent,#000 3%,#000 97%,transparent);-webkit-mask-composite:source-in;mask-composite:intersect;pointer-events:none}
+.closing-scene__poster,.closing-scene__canvas{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:contain}
+.closing-scene__canvas{opacity:0}.closing-scene[data-drawn] .closing-scene__canvas{opacity:1}.closing-scene[data-drawn] .closing-scene__poster{visibility:hidden}
+.closing-scene__shade{position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(90deg,rgba(8,14,15,.20),transparent 56%),linear-gradient(0deg,rgba(8,14,15,.85),transparent 15%,transparent 90%,rgba(8,14,15,.25))}
+.closing-scene__copy{position:absolute;left:5%;right:53%;top:50%;opacity:var(--closing-reveal,0);visibility:hidden;transform:translateY(calc(-50% + var(--closing-offset,26px)));will-change:opacity,transform}
+.closing-scene__copy.is-visible{visibility:visible}
+.closing-scene__chapter{display:flex;align-items:center;gap:10px;margin:0 0 clamp(22px,3.4svh,40px);font-size:11px;letter-spacing:1.8px;line-height:1.5;color:#d7dbd6}
+.closing-scene__chapter>span{width:28px;height:1px;background:var(--closing-lime)}.closing-scene__chapter b{font-weight:500;color:var(--closing-lime)}
+.closing-scene h2{font-family:Impact,'Arial Narrow','Helvetica Neue',sans-serif;font-weight:900;font-stretch:condensed;text-transform:uppercase;font-size:clamp(42px,6.2vw,108px);line-height:.98;letter-spacing:-1.7px;margin:0}
+
+
+
+.closing-scene__footer{position:absolute;left:5%;right:5%;bottom:max(30px,calc(env(safe-area-inset-bottom,0px) + 16px));display:flex;justify-content:space-between;align-items:center;gap:16px;font-size:9px;letter-spacing:1.2px;color:#adb8b2;line-height:1.5}
+.closing-scene__footer p{margin:0;letter-spacing:.3px;text-align:right}.closing-scene__footer p span{color:var(--closing-lime);margin-left:10px}
+.closing-scene__track{position:absolute;left:0;right:0;bottom:-13px;height:1px;background:#ffffff24}.closing-scene__track>span{display:block;width:100%;height:100%;background:var(--closing-lime);transform:scaleX(var(--closing-progress,0));transform-origin:left}
+.closing-scene__status{position:absolute;left:5%;right:5%;bottom:80px;padding:10px 12px;max-width:480px;margin:0;background:#080e0fe8;color:#d7dbd6;font-size:12px;line-height:1.5}.closing-scene__status:empty{display:none}
+.closing-scene__debug[hidden]{display:none}.closing-scene__debug{position:absolute;z-index:5;left:20px;top:max(20px,env(safe-area-inset-top,0px));width:min(280px,calc(100% - 40px));padding:16px;border:1px solid #d5f75466;border-radius:12px;background:#0b1215ed;font-size:12px;color:#f7f7f2}
+.closing-scene__debug label{display:block;margin:14px 0}.closing-scene__debug output{float:right}.closing-scene__debug input[type=range]{display:block;width:100%;min-height:36px;accent-color:var(--closing-lime)}.closing-scene__debug input[type=number]{width:68px;min-height:36px;margin-left:12px;padding:5px;font:inherit}.closing-scene__debug small{line-height:1.5;color:#c9cfcb}.closing-scene__debug input:focus-visible{outline:2px solid var(--closing-lime);outline-offset:4px}
+@media(min-width:701px) and (max-width:1100px) and (orientation:landscape){.closing-scene h2{font-size:clamp(38px,6vw,66px)}.closing-scene__chapter{margin-bottom:22px}}
+/* Tablet vertical: conserva el encuadre completo encima del mensaje. */
+@media(orientation:portrait){
+ .closing-scene{height:440svh}
+ .closing-scene__visual{width:100%;top:10%;transform:translateX(-50%)}
+ .closing-scene__shade{background:linear-gradient(0deg,var(--closing-bg) 5%,transparent 50%)}
+ .closing-scene__copy{left:7%;right:7%;top:calc(10svh + 56.25vw + 24px);transform:translateY(var(--closing-offset,26px))}
+ .closing-scene h2{font-size:clamp(36px,7.8vw,68px);letter-spacing:-1px}
+ .closing-scene__chapter{font-size:10px;margin-bottom:18px}
+ 
+ 
+}
+/* Móvil vertical: amplía la jugadora recortando solo el espacio vacío izquierdo. */
+@media(max-width:700px) and (orientation:portrait){
+ .closing-scene__visual{left:auto;right:0;top:8%;width:min(150vw,85.333333svh);transform:none}
+ .closing-scene__copy{top:calc(8svh + min(84.375vw,48svh) + 18px)}
+ .closing-scene h2{font-size:clamp(32px,9vw,54px)}
+ .closing-scene__chapter{font-size:9px;letter-spacing:1.2px;margin-bottom:12px;gap:7px}
+ 
+ 
+ .closing-scene__footer{font-size:8px;letter-spacing:.5px}.closing-scene__footer p{max-width:52%}
+ .closing-scene__debug{font-size:11px;padding:12px}
+}
+@media(max-width:700px) and (orientation:portrait) and (max-height:740px){
+ .closing-scene__visual{width:min(150vw,71.111111svh)}
+ .closing-scene__copy{top:calc(8svh + min(84.375vw,40svh) + 14px)}
+ .closing-scene h2{font-size:clamp(29px,8vw,46px)}
+ .closing-scene__chapter{margin-bottom:9px}
+}
+/* Móvil horizontal: se activa por altura y orientación, no por modelo de teléfono. */
+@media(max-height:540px) and (orientation:landscape){
+ .closing-scene{height:540svh}
+ .closing-scene__copy{left:5%;right:53%;top:48%}
+ .closing-scene h2{font-size:clamp(27px,4.8vw,48px);letter-spacing:-.7px}
+ .closing-scene__chapter{font-size:8px;letter-spacing:1px;margin-bottom:12px}
+ 
+ 
+ .closing-scene__footer{bottom:max(18px,env(safe-area-inset-bottom,0px));font-size:8px}
+ .closing-scene__track{bottom:-8px}
+ .closing-scene__debug{font-size:10px;padding:10px;top:10px}.closing-scene__debug label{margin:6px 0}
+}
+@media(prefers-reduced-motion:reduce){.closing-scene{height:100svh}.closing-scene__copy{opacity:1;visibility:visible;--closing-offset:0px}.closing-scene__footer{display:none}}
+
+/* Cierre: título y CTA, sin marcador. */
+.closing-scene h2{font-size:clamp(38px,5.2vw,92px)}
+.closing-scene__cta{display:inline-flex;align-items:center;justify-content:center;gap:28px;min-height:48px;max-width:100%;padding:17px 30px;border:0;border-radius:99px;background:var(--closing-lime);color:#10170b;text-decoration:none;font:700 15px/1.25 Arial,Helvetica,sans-serif;cursor:pointer;margin-top:32px}
+.closing-scene__cta>span{font-size:21px}.closing-scene__cta:hover{background:#e4ff86}
+.closing-scene__cta:focus-visible{outline:3px solid var(--closing-lime);outline-offset:6px}
+.closing-scene__copy:not(.is-visible) .closing-scene__cta{pointer-events:none}
+.closing-scene__dialog{width:min(470px,calc(100% - 32px));max-height:85svh;overflow:auto;border:1px solid #d5f75455;border-radius:18px;padding:32px;background:#10191b;color:#f7f7f2}
+.closing-scene__dialog::backdrop{background:#000a}.closing-scene__dialog h3{font-size:30px;margin:0 0 16px}.closing-scene__dialog p{color:#c9cfcb;line-height:1.6}.closing-scene__dialog .closing-scene__cta{margin-top:14px}
+@media(min-width:701px) and (max-width:1100px) and (orientation:landscape){.closing-scene h2{font-size:clamp(35px,5.1vw,58px)}}
+@media(orientation:portrait){.closing-scene h2{font-size:clamp(34px,7vw,64px)}.closing-scene__cta{margin-top:26px}}
+@media(max-width:700px) and (orientation:portrait){.closing-scene h2{font-size:clamp(30px,7.8vw,48px)}.closing-scene__cta{font-size:14px;min-height:46px;padding:14px 25px;margin-top:24px}}
+@media(max-width:700px) and (orientation:portrait) and (max-height:740px){.closing-scene h2{font-size:clamp(28px,7.6vw,44px)}.closing-scene__cta{margin-top:18px}}
+@media(max-height:540px) and (orientation:landscape){.closing-scene h2{font-size:clamp(25px,4.4vw,43px)}.closing-scene__cta{font-size:12px;min-height:44px;padding:11px 22px;margin-top:20px}.closing-scene__chapter{margin-bottom:14px}}
+@media(prefers-reduced-motion:reduce){.closing-scene__copy .closing-scene__cta{pointer-events:auto}}
