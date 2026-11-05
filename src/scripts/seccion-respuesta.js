@@ -82,10 +82,10 @@ class TennisReturn extends HTMLElement {
         };
         image.onerror=()=>{
           failed.add(n);
-          if(n===wanted)status.textContent=`No se pudo cargar el fotograma ${n}. Comprueba IMG/ESCENA-2-WebP y los nombres ezgif-frame-001.webp a ezgif-frame-094.webp.`;
+          if(n===wanted)status.textContent=`No se pudo cargar el fotograma ${n}. Comprueba IMG/ESCENA-2-WebP y los nombres ezgif-frame-001.jpg a ezgif-frame-094.jpg.`;
           finish();
         };
-        image.src=`${config.frameDirectory}ezgif-frame-${String(n).padStart(3,'0')}.webp`;
+        image.src=`${config.frameDirectory}ezgif-frame-${String(n).padStart(3,'0')}.jpg`;
       }
     }
     function update() {
