@@ -1,0 +1,45 @@
+---
+import '../styles/seccion-respuesta.css';
+interface Props { impactFrame?: number; }
+const { impactFrame = 55 } = Astro.props;
+// 55 es provisional: ajusta el impacto con /?debug=1 y guarda el número.
+const config = {
+  frameCount: 94,
+  impactFrame,
+  revealFrames: 7,
+  frameDirectory: `${import.meta.env.BASE_URL}ESCENA-2-WebP/`,
+};
+---
+<tennis-return class="return-scene" id="respuesta" data-config={JSON.stringify(config)}>
+  <section class="return-scene__stage" aria-labelledby="respuesta-title">
+    <div class="return-scene__visual">
+      <img class="return-scene__poster" src={`${config.frameDirectory}ezgif-frame-001.webp`} alt="Tenista preparada para devolver el saque en una pista oscura." width="1920" height="1080" loading="lazy" decoding="async" />
+      <canvas class="return-scene__canvas" aria-hidden="true"></canvas>
+    </div>
+    <div class="return-scene__shade" aria-hidden="true"></div>
+    <div class="return-scene__copy">
+      <p class="return-scene__chapter"><span aria-hidden="true"></span><b>02</b> / LA RESPUESTA</p>
+      <h2 id="respuesta-title">Encuentra<br />tu ritmo.</h2>
+      <p class="return-scene__description">Entrena tu técnica. Gana confianza.<br />Disfruta de cada intercambio.</p>
+      <ul class="return-scene__values" aria-label="Nuestro enfoque">
+        <li>Técnica</li><li>Movimiento</li><li>Control</li>
+      </ul>
+    </div>
+    <footer class="return-scene__footer">
+      <span>02 / LA RESPUESTA</span>
+      <p>Desliza para avanzar o retroceder <span aria-hidden="true">↕</span></p>
+      <div class="return-scene__track" aria-hidden="true"><span></span></div>
+    </footer>
+    <p class="return-scene__status" role="status" aria-live="polite"></p>
+    <aside class="return-scene__debug" hidden aria-label="Ajuste de la segunda escena">
+      <strong>ESCENA 02 · AJUSTE DEL IMPACTO</strong>
+      <label>Fotograma <output class="return-frame">1 / 94</output>
+        <input class="return-scrub" type="range" min="1" max="94" value="1" />
+      </label>
+      <label>Impacto <input class="return-impact" type="number" min="1" max="94" value={impactFrame} /></label>
+      <small>El 55 es provisional. Localiza el contacto y guarda el número en impactFrame.</small>
+    </aside>
+    <noscript><style>.return-scene{height:auto;min-height:100svh}.return-scene__copy{opacity:1!important;visibility:visible!important;transform:none!important}.return-scene__footer{display:none}</style></noscript>
+  </section>
+</tennis-return>
+<script src="../scripts/seccion-respuesta.js"></script>

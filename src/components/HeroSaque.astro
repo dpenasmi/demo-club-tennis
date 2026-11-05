@@ -1,0 +1,48 @@
+---
+// El impacto es PROVISIONAL: ajústalo viendo tus fotogramas con /?debug=1.
+const config = {
+  frameCount: 94,
+  impactFrame: 55,
+  revealFrames: 7,
+  frameDirectory: `${import.meta.env.BASE_URL}ESCENA-1-WebP/`,
+};
+const firstFrame = `${config.frameDirectory}ezgif-frame-001.webp`;
+---
+<section class="serve" id="saque" aria-label="El saque" data-config={JSON.stringify(config)}>
+  <div class="serve__stage">
+    <div class="serve__visual">
+    <img class="serve__poster" src={firstFrame} alt="Tenista preparándose para realizar un saque en una pista oscura." width="1920" height="1080" loading="eager" fetchpriority="high" />
+    <canvas class="serve__canvas" aria-hidden="true"></canvas>
+    </div>
+    <div class="serve__shade" aria-hidden="true"></div>
+    <header class="serve__header">
+      <a class="brand" href="#saque" aria-label="Rally Tennis, inicio">RALLY <span>/</span> <em>TENNIS</em></a>
+      <span class="serve__edition">CLUB & ESCUELA DE TENIS</span>
+    </header>
+    <div class="serve__copy">
+      <p class="serve__eyebrow">EL PRIMER PASO ESTÁ EN TI</p>
+      <h1>Todo empieza<br />con un saque.</h1>
+      <p class="serve__description">Técnica, energía y pasión en cada punto.</p>
+      <button class="serve__cta" type="button">Descubre tu juego <span aria-hidden="true">↗</span></button>
+    </div>
+    <footer class="serve__footer">
+      <p class="serve__chapter"><span></span><b>01</b> / EL SAQUE</p>
+      <p class="serve__hint">Desliza para empezar <span aria-hidden="true">↓</span></p>
+      <div class="serve__track" aria-hidden="true"><span></span></div>
+    </footer>
+    <p class="serve__status" role="status" aria-live="polite"></p>
+    <aside class="serve__debug" hidden aria-label="Ajuste de la secuencia">
+      <strong>AJUSTE DEL SAQUE</strong>
+      <label>Fotograma <output class="debug-frame">1 / 94</output><input class="debug-scrub" type="range" min="1" max="94" value="1" /></label>
+      <label>Impacto <input class="debug-impact" type="number" min="1" max="94" value={config.impactFrame} /></label>
+      <small>Busca el contacto y copia su número en impactFrame.</small>
+    </aside>
+    <dialog class="serve__dialog">
+      <h2>Tu próximo punto empieza aquí.</h2>
+      <p>El botón ya es interactivo. En esta prueba abre este mensaje; después lo conectaremos con la sección o el formulario del club.</p>
+      <form method="dialog"><button class="serve__cta">Volver a la pista ↗</button></form>
+    </dialog>
+    <noscript><style>.serve{height:100svh}.serve__copy{opacity:1;transform:none;visibility:visible}.serve__hint{display:none}</style></noscript>
+  </div>
+</section>
+<script src="../scripts/hero-saque.js"></script>
